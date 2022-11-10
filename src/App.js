@@ -1,6 +1,8 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import bakeryData from "./assets/bakery-data.json";
+import BakeryItem from './components/BakeryItem'
+import CartItems from './components/CartItems'
 
 /* ####### DO NOT TOUCH -- this makes the image URLs work ####### */
 bakeryData.forEach((item) => {
@@ -9,20 +11,35 @@ bakeryData.forEach((item) => {
 /* ############################################################## */
 
 function App() {
-  // TODO: use useState to create a state variable to hold the state of the cart
-  /* add your cart state code here */
+  const [cart, setCart] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [currentItem, setItem] = useState({name: "", count: "", id: ""});
+  const count = useRef({});
 
   return (
     <div className="App">
-      <h1>My Bakery</h1> {/* TODO: personalize your bakery (if you want) */}
-
-      {bakeryData.map((item, index) => ( // TODO: map bakeryData to BakeryItem components
-        <p>Bakery Item {index}</p> // replace with BakeryItem component
-      ))}
-
-      <div>
-        <h2>Cart</h2>
-        {/* TODO: render a list of items in the cart */}
+      <div className="Bakery">
+        <h1 style={{marginTop: 0}}>My Amazing Bakery</h1>
+        <h2 style={{marginLeft: 50}}>Bakery Items</h2>
+        <div className="BakeryItems">
+        {bakeryData.map((item, index) => (
+          <BakeryItem key={index.toString()}
+          name={item.name} description={item.description} price={item.price} image={item.image}
+          cart={cart} setCart={setCart}
+          total={total} setTotal={setTotal}
+          currentItem={currentItem} setItem={setItem}
+          count={count}
+          item={item} index={index}
+          />))}
+        </div>
+      </div>
+      <div className="Cart">
+        <h2 style={{marginLeft: 50}}>Cart Total: ${total.toFixed(2)}</h2>
+        <div className="CartItems">
+          <br></br>
+          <CartItems cart={cart} count={count}/>
+          <br></br>
+        </div>
       </div>
     </div>
   );
