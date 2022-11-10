@@ -1,0 +1,27 @@
+body {
+  background-color: #122a33;
+}
+
+.App {
+  min-height: 100vh;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  margin-left: 20px;
+}
+
+.BakeryItems {
+  margin-left: -30px;
+}
+
+.CartItems {
+  margin-left: 55px;
+}
+
+.Bakery {
+  width: 50%;
+  float: left;
+}
+
+.Cart {
+  margin-left: 50%;
+}
