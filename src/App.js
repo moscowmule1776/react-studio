@@ -13,7 +13,6 @@ bakeryData.forEach((item) => {
 function App() {
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
-  const [currentItem, setItem] = useState({name: "", count: "", id: ""});
   const count = useRef({});
 
   return (
@@ -27,7 +26,6 @@ function App() {
           name={item.name} description={item.description} price={item.price} image={item.image}
           cart={cart} setCart={setCart}
           total={total} setTotal={setTotal}
-          currentItem={currentItem} setItem={setItem}
           count={count}
           item={item} index={index}
           />))}
